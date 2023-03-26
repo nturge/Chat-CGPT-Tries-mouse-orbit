@@ -1,14 +1,19 @@
 
 <script>
 const mouseURL = "cursor.png" 
-      
+let theta = 0
+let radius = 100
+
+
   // set the mouse clone position relative to client
   function setPosition(event, element){
-  	let clientX = event.x
-  	let clientY = event.y
+    let cx = event.x
+		let cy = event.y
+    let y = cy
+    let x = cx
     element.style.position = 'absolute'
-    element.style.left = clientX + 'px'
-    element.style.top = clientY + 'px'
+    element.style.left = x + 'px'
+    element.style.top = y + 'px'
     element.style.transform = 'scale(50%)'
   }
   
@@ -20,11 +25,11 @@ function addMouseClone(event) {
   document.body.appendChild(mouseClone);
   setPosition(event, mouseClone)
   
-  function moveMice(event){
-    setPosition(event, mouseClone)
-  }
+//   function moveMice(event){
+//     setPosition(event, mouseClone)
+//   }
   
-  window.addEventListener('mousemove', moveMice)
+//   window.addEventListener('mousemove', moveMice)
 }
 
 
