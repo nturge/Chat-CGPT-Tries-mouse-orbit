@@ -18,10 +18,18 @@ function addMouseClone(event) {
   let mouseClone = document.createElement('img');
   mouseClone.src = mouseURL;
   document.body.appendChild(mouseClone);
-	setPosition(event, mouseClone)
+  setPosition(event, mouseClone)
+  
+  function moveMice(event){
+    setPosition(event, mouseClone)
+  }
+  
+  window.addEventListener('mousemove', moveMice)
 }
 
+
 window.addEventListener('click', addMouseClone);
+
 
 </script>
   
