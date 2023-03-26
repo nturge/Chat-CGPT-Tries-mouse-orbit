@@ -1,57 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Mouse Cloner</title>
-    <style>
-        #container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
 
-    </style>
-</head>
-<body>
-    <div id="container"></div>
-		
-    <script>
-			
-      const container = document.querySelector('#container');
-      const mouseURL = "cursor.png" 
+<script>
+const mouseURL = "cursor.png" 
+      
+  // set the mouse clone position relative to client
+  function setPosition(event, element){
+  	let clientX = event.x
+  	let clientY = event.y
+    element.style.position = 'absolute'
+    element.style.left = clientX + 'px'
+    element.style.top = clientY + 'px'
+    element.style.transform = 'scale(50%)'
+  }
+  
+  
+function addMouseClone(event) {    
+  // Create a new element for the mouse clone
+  let mouseClone = document.createElement('img');
+  mouseClone.src = mouseURL;
+  document.body.appendChild(mouseClone);
+	setPosition(event, mouseClone)
+}
 
-      function setPosition(e, element){
-       const containerRect = container.getBoundingClientRect();
-                const mouseX = e.clientX - containerRect.left;
-                const mouseY = e.clientY - containerRect.top;
-                const offset = Math.floor(Math.random()*50); // Random distance from user's cursor
-                const angle = Math.atan2(mouseY - containerRect.height / 2, mouseX - containerRect.width / 2); // Calculate angle between mouse and center of container
-                const orbitX = Math.cos(angle) * offset;
-                const orbitY = Math.sin(angle) * offset;
-                element.style.left = mouseX + orbitX + 'px';
-                element.style.top = mouseY + orbitY + 'px';
-      }
-        // Function to add mouse clone on click
-        function addMouseClone(e) {
-        	let clientX = e.x
-  				let clientY = e.y
-        	const mouseClone = document.createElement('img');
-          mouseClone.src = mouseURL
-            container.appendChild(mouseClone);
-            mouseClone.style.position = 'absolute';
-            mouseClone.style.left = clientX + 'px';
-            mouseClone.style.top =  clientY + 'px'; 
-            mouseClone.style.transform = 'scale(50%)'
-        		function moveMouseClone(e){
-        			setPosition(e, mouseClone)
-      		}
-          container.addEventListener('mousemove', moveMouseClone);
-        }
-      
-      
-      
-    container.addEventListener('click', addMouseClone);
-        
-    </script>
-</body>
-</html>
+window.addEventListener('click', addMouseClone);
+
+</script>
+  
