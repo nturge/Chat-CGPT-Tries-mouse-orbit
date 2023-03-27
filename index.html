@@ -1,18 +1,21 @@
-
 <script>
 const mouseURL = "cursor.png" 
 let mouseScale = "scale(50%)" 
 let theta = 0
-let radius = 25
+let radius = 50
 //randomly changes scale, affecting dispersion pattern of mice - could become a key event
-let scale = Math.floor(Math.random() * 25)
+let scale = Math.floor(Math.random() * 50)
 
- function drawMice(cx, cy){ 
-   	let mouse = document.body.children
-    let mice = document.body.children.lengths
-      for(let i = 0; i < mice; i++){
+
+
+	function moveMice(event){
+    let cx = event.x
+    let cy = event.y
+    let mouse = document.body.children
+    let mice = document.body.children.length
+    for(let i = 0; i < mice; i++){
       theta += 0.05
-      let offset = Math.floor(Math.random() * i)
+      let offset = Math.floor(Math.random() + i)
           if(mice % 2 === 0) {
             radius = Math.cos(theta) * (20 * i);
             console.log("The number is even.");
@@ -32,13 +35,8 @@ let scale = Math.floor(Math.random() * 25)
          mouse[i].style.top = cy + orbitY + offset + 'px'
         }
     }
-  }
 
-	function moveMice(event){
-    let cx = event.x
-    let cy = event.y
-    drawMice(cx, cy)
- }
+  }
   
   function createMouse(event){
     let clientX = event.x
@@ -56,7 +54,6 @@ let scale = Math.floor(Math.random() * 25)
 
 window.addEventListener('mousemove', moveMice )
 window.addEventListener('mousedown', createMouse)
-
 
 </script>
   
