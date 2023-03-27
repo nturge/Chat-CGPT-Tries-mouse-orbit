@@ -1,39 +1,41 @@
 
 <script>
+let mouse
 const mouseURL = "cursor.png" 
+let mouseScale = "scale(50%)" 
 let theta = 0
 let radius = 100
-
-
-  // set the mouse clone position relative to client
-  function setPosition(event, element){
-    let cx = event.x
-		let cy = event.y
-    let y = cy
-    let x = cx
-    element.style.position = 'absolute'
-    element.style.left = x + 'px'
-    element.style.top = y + 'px'
-    element.style.transform = 'scale(50%)'
+  
+    function setPosition(event, element){
+        theta += 0.05
+      	let clientX = event.x
+        let clientY = event.y
+        let orbitX = Math.cos(theta) * radius
+        let orbitY = Math.sin(theta) * radius
+        element.style.position = 'absolute'
+   			element.style.left = clientX + orbitX + 'px'
+    		element.style.top = clientY + orbitY + 'px'
+  	 }
+  
+  function addMouse(event){
+    mouse = document.createElement('img')
+  	mouse.src = mouseURL
+    mouse.style.transform = mouseScale
+  	document.body.appendChild(mouse)
+    setPosition(event, mouse)  
+    
+    function moveMice(event){
+    setPosition(event, mouse)
   }
+    window.addEventListener('mousemove', moveMice)
+  } 
+
   
-  
-function addMouseClone(event) {    
-  // Create a new element for the mouse clone
-  let mouseClone = document.createElement('img');
-  mouseClone.src = mouseURL;
-  document.body.appendChild(mouseClone);
-  setPosition(event, mouseClone)
-  
-//   function moveMice(event){
-//     setPosition(event, mouseClone)
-//   }
-  
-//   window.addEventListener('mousemove', moveMice)
+function setup() {
 }
 
-
-window.addEventListener('click', addMouseClone);
+window.addEventListener('load', setup);
+window.addEventListener('mousedown', addMouse)
 
 
 </script>
