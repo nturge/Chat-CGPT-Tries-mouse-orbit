@@ -1,41 +1,42 @@
 
 <script>
-let mouse
 const mouseURL = "cursor.png" 
 let mouseScale = "scale(50%)" 
-let theta = 0
+let theta = 0.05
 let radius = 100
+
   
-    function setPosition(event, element){
-        theta += 0.05
-      	let clientX = event.x
-        let clientY = event.y
-        let orbitX = Math.cos(theta) * radius
-        let orbitY = Math.sin(theta) * radius
-        element.style.position = 'absolute'
-   			element.style.left = clientX + orbitX + 'px'
-    		element.style.top = clientY + orbitY + 'px'
-  	 }
+	function moveMice(event){
+    let cx = event.x
+    let cy = event.y
+    let mouse = document.body.children
+    let mice = document.body.children.length
+    let offset = 5 
+    for(let i = 0; i < mice; i++){
+       mouse[i].style.postion = 'absolute'
+   		 mouse[i].style.left = cx + (offset * i) + 'px'
+   		 mouse[i].style.top = cy + (offset * i) + 'px'
+      let x = mouse[i].style.left
+      let y = mouse[i].style.top
+      console.log(x, y)
+    }
+  }
   
-  function addMouse(event){
-    mouse = document.createElement('img')
+  function createMouse(event){
+    let clientX = event.x
+    let clientY = event.y
+    const mouse = document.createElement('img')
   	mouse.src = mouseURL
     mouse.style.transform = mouseScale
   	document.body.appendChild(mouse)
-    setPosition(event, mouse)  
-    
-    function moveMice(event){
-    setPosition(event, mouse)
-  }
-    window.addEventListener('mousemove', moveMice)
+    mouse.style.position = 'absolute'
+    mouse.style.left = clientX + 'px'
+    mouse.style.top = clientY + 'px' 
   } 
 
-  
-function setup() {
-}
 
-window.addEventListener('load', setup);
-window.addEventListener('mousedown', addMouse)
+window.addEventListener('mousemove', moveMice )
+window.addEventListener('mousedown', createMouse)
 
 
 </script>
