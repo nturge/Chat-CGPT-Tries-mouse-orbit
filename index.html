@@ -2,8 +2,10 @@
 <script>
 const mouseURL = "cursor.png" 
 let mouseScale = "scale(50%)" 
-let theta = 0.05
-let radius = 100
+let theta = 0
+let radius = 50
+//randomly changes scale, affecting dispersion pattern of mice - could become a key event
+let scale = Math.floor(Math.random() * 50)
 
 
   
@@ -15,11 +17,24 @@ let radius = 100
     for(let i = 0; i < mice; i++){
       theta += 0.05
       let offset = Math.floor(Math.random() + i)
-      const orbitX = Math.cos(theta + (5 * i)) * radius;
-    	const orbitY = Math.sin(theta + (5 * i)) * radius;
-       mouse[i].style.postion = 'absolute'
-   		 mouse[i].style.left = cx + orbitX  + offset + 'px'
-   		 mouse[i].style.top = cy + orbitY + offset + 'px'
+          if(mice % 2 === 0) {
+            radius = Math.cos(theta) * (20 * i);
+            console.log("The number is even.");
+            const orbitX = Math.cos(theta + (scale * i)) * radius;
+            const orbitY = Math.sin(theta + (scale * i)) * radius;
+             mouse[i].style.postion = 'absolute'
+             mouse[i].style.left = cx + orbitX  + offset + 'px'
+             mouse[i].style.top = cy + orbitY + offset + 'px'
+        }
+        else {
+        radius = Math.sin(theta) * (40 * i);
+        console.log("The number is odd.");
+        const orbitX = Math.cos(theta + (scale * i)) * radius;
+    		const orbitY = Math.sin(theta + (scale * i)) * radius;
+         mouse[i].style.postion = 'absolute'
+         mouse[i].style.left = cx + orbitX  + offset + 'px'
+         mouse[i].style.top = cy + orbitY + offset + 'px'
+        }
     }
     	
   }
@@ -35,6 +50,7 @@ let radius = 100
     mouse.style.left = clientX + 'px'
     mouse.style.top = clientY + 'px' 
   } 
+
 
 
 window.addEventListener('mousemove', moveMice )
