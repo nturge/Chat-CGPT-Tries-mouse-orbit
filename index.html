@@ -3,7 +3,7 @@
 const mouseURL = "cursor.png" 
 let mouseScale = "scale(50%)" 
 let theta = 0.05
-let radius = 100
+
 
   
 	function moveMice(event){
@@ -11,15 +11,14 @@ let radius = 100
     let cy = event.y
     let mouse = document.body.children
     let mice = document.body.children.length
-    let offset = 5 
+    const orbitX = Math.cos(theta);
+    const orbitY = Math.sin(theta);
     for(let i = 0; i < mice; i++){
        mouse[i].style.postion = 'absolute'
-   		 mouse[i].style.left = cx + (offset * i) + 'px'
-   		 mouse[i].style.top = cy + (offset * i) + 'px'
-      let x = mouse[i].style.left
-      let y = mouse[i].style.top
-      console.log(x, y)
+   		 mouse[i].style.left = cx + orbitX + 'px'
+   		 mouse[i].style.top = cy + orbitY + 'px'
     }
+    	
   }
   
   function createMouse(event){
