@@ -18,21 +18,23 @@ let scale = Math.floor(Math.random() * 50)
       let offset = Math.floor(Math.random() + i)
           if(mice % 2 === 0) {
             radius = Math.cos(theta) * (20 * i);
-            console.log("The number is even.");
             const orbitX = Math.cos(theta + (scale * i)) * radius;
             const orbitY = Math.sin(theta + (scale * i)) * radius;
              mouse[i].style.postion = 'absolute'
              mouse[i].style.left = cx + orbitX  + offset + 'px'
              mouse[i].style.top = cy + orbitY + offset + 'px'
+            console.log("The number is even")
+            console.log("the number of mice is" + mice + ", and the scale is" + scale)
         }
         else {
         radius = Math.sin(theta) * (40 * i);
-        console.log("The number is odd.");
         const orbitX = Math.cos(theta + (scale * i)) * radius;
     		const orbitY = Math.sin(theta + (scale * i)) * radius;
          mouse[i].style.postion = 'absolute'
          mouse[i].style.left = cx + orbitX  + offset + 'px'
          mouse[i].style.top = cy + orbitY + offset + 'px'
+        	console.log("the number of mice is" + mice + ", and the scale is" + scale);
+          console.log("The number is odd.");
         }
     }
 
