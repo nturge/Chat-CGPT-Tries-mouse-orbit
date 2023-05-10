@@ -1,2 +1,3 @@
-# Chat-CGPT-Tries-mouse-orbit
-◕ ◞ ◕ This project was made using https://netnet.studio
+This project was an early experiment in the development of [additive-cursor](https://nturge.github.io/additive-cursor/). Like the later site, this site uses javascript to create cursor elements on each mouse-click, tracking user mouse inputs to trail the orignal mouse. This site, however, is a little more glitchy, with sparatic movements of the mouse trail that become static again as the user stops moving the mouse. This project was made using https://netnet.studio and is live at [stagnant-additive-cursor](https://nturge.github.io/stagnant-additive-cursor-sketch/)
+
+<img width="1289" alt="Screen Shot 2023-05-10 at 8 10 41 AM" src="https://github.com/nturge/stagnant-additive-cursor-sketch/assets/113140800/b43422dc-62f6-452f-aa23-4d7d874c3c5b">
